@@ -1,0 +1,48 @@
+#apollo 配置
+apollo:
+  meta: http://dev.config.csm.light.fang.com
+  bootstrap:
+    enabled: true
+#    namespaces: bigdata.test_bigdata
+#apollo的app.id
+app:
+  id: bigdatamicroserviceconfig
+
+#数据源配置 数据库密码存在本地磁盘，不在apollo上
+datasource:
+  #数据库本地磁盘配置
+  dbpassword: /dbconfigdev/db.properties
+  #由于kylin的cube分库存储所以在这里区分库名，在java程序的
+  kylin:
+    urltail: searchkeywords
+  kylin_newsfb:
+    urltail: newsfbagentstat
+
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: springcloudbasicpkg
+
+elasticsearch:
+  cluster_name: elasticsearch_bigdata
+
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+        step: 1m
+        descriptions: true
+  web:
+    server:
+      auto-time-requests: true
+  endpoints:
+    prometheus:
+      id: springmetrics
+    web:
+      exposure:
+        include: health,info,env,prometheus,metrics,httptrace,threaddump,heapdump,springmetrics

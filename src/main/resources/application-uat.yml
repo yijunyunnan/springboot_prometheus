@@ -1,0 +1,44 @@
+#apollo 配置
+apollo:
+  meta: http://uat.config.csm.light.fang.com
+  bootstrap:
+    enabled: true
+#    namespaces: bigdata.test_bigdata
+#apollo的app.id
+app:
+  id: bigdatamicroserviceconfig
+
+datasource:
+  dbpassword: /dbconfig/db.properties
+  kylin:
+    urltail: searchkeywords
+  kylin_newsfb:
+    urltail: newsfbagentstat
+
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  application:
+    name: springcloudbasicpkg
+elasticsearch:
+  cluster_name: es_bigdata
+
+management:
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+        step: 1m
+        descriptions: true
+  web:
+    server:
+      auto-time-requests: true
+  endpoints:
+    prometheus:
+      id: springmetrics
+    web:
+      exposure:
+        include: health,info,env,prometheus,metrics,httptrace,threaddump,heapdump,springmetrics
